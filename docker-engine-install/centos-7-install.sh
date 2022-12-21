@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-printf "Removing old docker installations"
+printf "\n\nRemoving old docker installations"
 
 sudo yum remove docker \
                   docker-client \
@@ -11,19 +11,25 @@ sudo yum remove docker \
                   docker-logrotate \
                   docker-engine
 
-printf "Set up the repository"
+printf "\n\nSet up the repository"
 
 sudo yum install -y yum-utils
 sudo yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
 
-printf "Installing Docker Engine and "
+printf "\n\nInstalling Docker Engine and other Docker Plugins"
 
 sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+printf "\n\nStarting docker Service"
+
 sudo systemctl start docker
+
+printf "\n\nEnabling docker Service to always run at boot"
 
 sudo systemctl enable docker
 
-sudo usermod -aG docker $
+printf "\n\nAssigning Current User to docker Group"
+
+sudo usermod -aG docker $USER
