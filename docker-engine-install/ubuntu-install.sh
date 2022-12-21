@@ -2,14 +2,7 @@
 
 printf "Removing old docker installations"
 
-sudo yum remove docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
-                  docker-engine
+sudo apt-get remove docker docker-engine docker.io containerd runc
 
 printf "Set up the repository"
 
@@ -26,4 +19,11 @@ sudo systemctl start docker
 
 sudo systemctl enable docker
 
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $
+
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+
+
+
+
